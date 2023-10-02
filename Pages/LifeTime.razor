@@ -1,0 +1,62 @@
+﻿@page "/lifetime"
+@using DI.Lifetime.Sample.Data;
+
+<PageTitle>Lifetime</PageTitle>
+
+@inject OperationService OperationService
+@inject ITransientOperation transientOperation
+@inject IScopedOperation scopedOperation
+@inject ISingletonOperation singletonOperation
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Life time</th>
+            <th>type</th>
+            <th>Guid</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr colspan="3"><td><center><b>Controller</b></center></td></tr>
+        <tr>
+            <td>@transientOperation.LifeTime</td>
+            <td>@transientOperation.GetType()</td>
+            <td>@transientOperation.OperationId</td>
+            <td>Always change</td>
+        </tr>
+        <tr>
+            <td>@scopedOperation.LifeTime</td>
+            <td>@scopedOperation.GetType()</td>
+            <td>@scopedOperation.OperationId</td>
+            <td>changes only with lifetime</td>
+        </tr>
+        <tr>
+            <td>@singletonOperation.LifeTime</td>
+            <td>@singletonOperation.GetType()</td>
+            <td>@singletonOperation.OperationId</td>
+            <td>always the same</td>
+        </tr>
+        <tr colspan="3"><td><center><b>Operation</b></center></td></tr>
+        <tr>
+            <td>@OperationService.TransientOperation.LifeTime</td>
+            <td>@OperationService.TransientOperation.GetType()</td>
+            <td>@OperationService.TransientOperation.OperationId</td>
+            <td>Always change</td>
+        </tr>
+        <tr>
+            <td>@OperationService.ScopedOperation.LifeTime</td>
+            <td>@OperationService.ScopedOperation.GetType()</td>
+            <td>@OperationService.ScopedOperation.OperationId</td>
+            <td>changes only with lifetime</td>
+        </tr>
+        <tr>
+            <td>@OperationService.SingletonOperation.LifeTime</td>
+            <td>@OperationService.SingletonOperation.GetType()</td>
+            <td>@OperationService.SingletonOperation.OperationId</td>
+            <td>always the same</td>
+        </tr>
+
+       
+
+    </tbody>
+</table>
